@@ -24,32 +24,60 @@ class RomanticAudioPlayer {
   constructor() {
     this.audioElement = document.getElementById('proposalAudio');
     this.isPlaying = false;
+    this.onStateChange = null;
 
     if (this.audioElement) {
-      this.audioElement.volume = 0.85;
-      this.audioElement.addEventListener('ended', () => {
-        this.audioElement.currentTime = 0;
-        this.audioElement.play().catch(() => {});
-      });
-      this.audioElement.addEventListener('play', () => {
+      // Ensure audio is unmuted and at pleasant volume
+      this.audioElement.muted = false;
+      try {
+        this.audioElement.volume = 0.9;
+      } catch (e) {
+        // iOS doesn't allow programmatic volume modifications (uses hardware keys)
+      }
+
+      // Sync playback state with physical audio playback
+      this.audioElement.addEventListener('playing', () => {
         this.isPlaying = true;
+        if (typeof this.onStateChange === 'function') {
+          this.onStateChange(true);
+        }
       });
+
       this.audioElement.addEventListener('pause', () => {
         this.isPlaying = false;
+        if (typeof this.onStateChange === 'function') {
+          this.onStateChange(false);
+        }
+      });
+
+      this.audioElement.addEventListener('ended', () => {
+        this.isPlaying = false;
+        if (typeof this.onStateChange === 'function') {
+          this.onStateChange(false);
+        }
+        this.audioElement.currentTime = 0;
+        this.play().catch(() => {});
+      });
+
+      this.audioElement.addEventListener('error', (e) => {
+        console.warn("Audio element encountered error:", e);
+        this.isPlaying = false;
+        if (typeof this.onStateChange === 'function') {
+          this.onStateChange(false);
+        }
       });
     }
   }
 
   playCelebrationChimes() {
-    // Pure song experience: keep only the original song playing
-    if (this.audioElement && !this.isPlaying) {
+    if (this.audioElement && (!this.isPlaying || this.audioElement.paused)) {
       this.play();
     }
   }
 
   toggle() {
     if (!this.audioElement) return false;
-    if (this.isPlaying) {
+    if (!this.audioElement.paused && this.isPlaying) {
       this.pause();
       return false;
     } else {
@@ -59,17 +87,44 @@ class RomanticAudioPlayer {
   }
 
   play() {
-    if (!this.audioElement) return;
+    if (!this.audioElement) return Promise.resolve(false);
+    this.audioElement.muted = false;
+
+    // If audio is already active, don't interrupt
+    if (!this.audioElement.paused && this.isPlaying) {
+      return Promise.resolve(true);
+    }
+
+    try {
+      if (this.audioElement.readyState === 0) {
+        this.audioElement.load();
+      }
+    } catch (e) {}
+
     const playPromise = this.audioElement.play();
     if (playPromise !== undefined) {
-      playPromise
+      return playPromise
         .then(() => {
           this.isPlaying = true;
+          if (typeof this.onStateChange === 'function') {
+            this.onStateChange(true);
+          }
+          return true;
         })
         .catch((err) => {
-          console.warn("Song play waiting for gesture:", err);
+          console.warn("Song play blocked or awaiting gesture:", err);
           this.isPlaying = false;
+          if (typeof this.onStateChange === 'function') {
+            this.onStateChange(false);
+          }
+          return false;
         });
+    } else {
+      this.isPlaying = true;
+      if (typeof this.onStateChange === 'function') {
+        this.onStateChange(true);
+      }
+      return Promise.resolve(true);
     }
   }
 
@@ -77,6 +132,9 @@ class RomanticAudioPlayer {
     this.isPlaying = false;
     if (this.audioElement) {
       this.audioElement.pause();
+    }
+    if (typeof this.onStateChange === 'function') {
+      this.onStateChange(false);
     }
   }
 }
@@ -399,83 +457,84 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  musicToggleBtn?.addEventListener('click', () => {
-    const isPlaying = audioPlayer.toggle();
-    updateMusicUI(isPlaying);
+  // Wire RomanticAudioPlayer state changes directly to the UI
+  audioPlayer.onStateChange = (playing) => {
+    updateMusicUI(playing);
+  };
+
+  musicToggleBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    audioPlayer.toggle();
   });
 
   /* --------------------------------------------------------------------------
-     Guaranteed Autoplay & Audio Curtain Unlock
+     Guaranteed Mobile & Desktop Audio Curtain Unlock
      -------------------------------------------------------------------------- */
   const audioCurtain = document.getElementById('audioCurtain');
   const curtainEnterBtn = document.getElementById('curtainEnterBtn');
 
-  function startMusicAndDismissCurtain() {
-    if (!audioPlayer.isPlaying) {
-      audioPlayer.play();
-      updateMusicUI(true);
-    }
+  let curtainUnlocked = false;
+
+  function dismissCurtain() {
     if (audioCurtain && !audioCurtain.classList.contains('dismissed')) {
       audioCurtain.classList.add('dismissed');
       setTimeout(() => {
         audioCurtain.style.display = 'none';
       }, 850);
     }
-    cleanupAutoplayListeners();
   }
 
-  const interactionEvents = ['click', 'touchstart', 'pointerdown', 'keydown', 'scroll', 'wheel'];
-  function onFirstUserGesture() {
-    startMusicAndDismissCurtain();
+  function handleCurtainOpen(e) {
+    if (curtainUnlocked) return;
+    curtainUnlocked = true;
+
+    // Immediately play within the synchronous callstack of the user gesture
+    audioPlayer.play();
+
+    // Smoothly animate & hide curtain
+    dismissCurtain();
+
+    // Clean up document-level fallback listener
+    removeFallback();
   }
 
-  function setupAutoplayListeners() {
-    interactionEvents.forEach(evt => {
-      window.addEventListener(evt, onFirstUserGesture, { passive: true, once: true });
-    });
-  }
-
-  function cleanupAutoplayListeners() {
-    interactionEvents.forEach(evt => {
-      window.removeEventListener(evt, onFirstUserGesture);
-    });
-  }
+  // Fast-path for mobile: touchend fires at the exact moment of tap with no 300ms latency
+  curtainEnterBtn?.addEventListener('touchend', (e) => {
+    e.stopPropagation();
+    handleCurtainOpen(e);
+  }, { passive: true });
 
   curtainEnterBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
-    startMusicAndDismissCurtain();
+    handleCurtainOpen(e);
   });
 
-  audioCurtain?.addEventListener('click', () => {
-    startMusicAndDismissCurtain();
+  // Tapping anywhere on the curtain overlay also unlocks & starts
+  audioCurtain?.addEventListener('touchend', (e) => {
+    if (e.target.closest('#curtainEnterBtn')) return;
+    handleCurtainOpen(e);
+  }, { passive: true });
+
+  audioCurtain?.addEventListener('click', (e) => {
+    if (e.target.closest('#curtainEnterBtn')) return;
+    handleCurtainOpen(e);
   });
 
-  // Attempt direct unprompted autoplay immediately on page load
-  try {
-    if (audioPlayer.audioElement) {
-      const playPromise = audioPlayer.audioElement.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {
-          // Autoplay permitted by browser!
-          audioPlayer.isPlaying = true;
-          updateMusicUI(true);
-          if (audioCurtain) {
-            audioCurtain.classList.add('dismissed');
-            setTimeout(() => { audioCurtain.style.display = 'none'; }, 850);
-          }
-        }).catch(() => {
-          // Autoplay policy waiting for user gesture
-          setupAutoplayListeners();
-        });
-      } else {
-        setupAutoplayListeners();
-      }
-    } else {
-      setupAutoplayListeners();
+  // Fallback: If for any reason on a mobile browser the first touch buffered slowly,
+  // the next interaction anywhere on the screen seamlessly resumes playback
+  function onDocInteraction() {
+    if (audioPlayer.audioElement && audioPlayer.audioElement.paused) {
+      audioPlayer.play();
     }
-  } catch (err) {
-    setupAutoplayListeners();
   }
+
+  function removeFallback() {
+    document.removeEventListener('click', onDocInteraction);
+    document.removeEventListener('touchend', onDocInteraction);
+  }
+
+  document.addEventListener('click', onDocInteraction, { once: true });
+  document.addEventListener('touchend', onDocInteraction, { once: true, passive: true });
 
   /* --------------------------------------------------------------------------
      Hero Section Typewriter Animation
