@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="hi-Latn-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaya Verma ❤️ Rajkumar Parihar | A Forever Love Story</title>
+  <meta name="description" content="A cinematic, emotional, and personalized digital love story and marriage proposal from Rajkumar Parihar to Jaya Verma.">
+  <meta name="theme-color" content="#180309">
+  
+  <!-- Google Fonts: Playfair Display, Cormorant Garamond, Dancing Script, Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP for smooth cinematic motion -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Cinematic Romantic Audio Unlock Curtain -->
+  <div class="audio-curtain-overlay" id="audioCurtain">
+    <div class="curtain-content glass-card">
+      <div class="curtain-wax-seal">💌</div>
+      <span class="curtain-eyebrow">A Special Love Story</span>
+      <h2 class="curtain-title">For Jaya Verma <span class="heartbeat-hero">❤️</span></h2>
+      <p class="curtain-sender">From Rajkumar Parihar</p>
+      <button class="btn-primary-luxury curtain-btn" id="curtainEnterBtn">
+        <span class="music-icon-pulse">🎵</span>
+        <span>Open Our Story With Music</span>
+      </button>
+      <p class="curtain-hint">Tap anywhere to begin our cinematic journey</p>
+    </div>
+  </div>
+
+  <!-- Ambient Particle Canvases for cinematic falling petals & floating glowing hearts -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <canvas id="celebration-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Vignette & Cinema Lighting Overlays -->
+  <div class="cinematic-vignette" aria-hidden="true"></div>
+  <div class="cinematic-spotlight" id="cinematic-spotlight" aria-hidden="true"></div>
+
+  <!-- Floating Audio Player Bar -->
+  <header class="ambient-header">
+    <div class="music-player-pill" id="musicPlayerWidget">
+      <button class="music-toggle-btn" id="musicToggleBtn" aria-label="Toggle romantic background music" title="Toggle Music">
+        <span class="music-icon" id="musicIcon">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </span>
+        <div class="sound-wave" id="soundWave" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <span class="music-title">🎵 I Love You</span>
+      </button>
+      <div class="music-status-pill" id="musicStatusText">Tap to Play Song</div>
+    </div>
+    <audio id="proposalAudio" preload="auto" loop playsinline>
+      <source src="audio/i-love-you-web.m4a" type="audio/mp4">
+      <source src="audio/i-love-you.m4a" type="audio/x-m4a">
+    </audio>
+  </header>
+
+  <main>
+    <!-- ==========================================
+         HERO / LANDING SECTION
+         ========================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-glow-halo" aria-hidden="true"></div>
+      
+      <div class="hero-content container">
+        <div class="pre-title-badge animate-fade-in">
+          <span class="sparkle-icon">✨</span> A Letter From The Heart <span class="sparkle-icon">✨</span>
+        </div>
+        
+        <h1 class="hero-title animate-glow">
+          Jaya Verma <span class="heartbeat-hero">❤️</span>
+        </h1>
+        
+        <p class="hero-subtext" id="heroSubtext">
+          Ek baat hai jo dil mein bahut time se hai...
+        </p>
+
+        <!-- Floating Hero Couple Preview with Centered Faces and Lovely Locket -->
+        <div class="hero-couple-locket-wrap float-gentle" data-tilt id="heroCoupleLocket">
+          <div class="locket-sparkles-orbit" aria-hidden="true">
+            <span class="locket-star ls-1">✨</span>
+            <span class="locket-star ls-2">💖</span>
+            <span class="locket-star ls-3">✨</span>
+            <span class="locket-star ls-4">🌸</span>
+          </div>
+          
+          <div class="hero-couple-avatar">
+            <div class="avatar-ring-glow"></div>
+            <div class="avatar-frame-inner">
+              <img src="images/couple-palace.jpg" alt="Rajkumar & Jaya" class="hero-couple-img">
+              <div class="avatar-glass-shine"></div>
+            </div>
+            <div class="avatar-heart-badge" title="Meri Jaan ❤️">
+              <span>❤️</span>
+            </div>
+          </div>
+          
+          <div class="locket-caption-pill">
+            <span class="pill-sparkle">🌹</span>
+            <span class="pill-text">Rajkumar &amp; Jaya • Humesha Ke Liye</span>
+            <span class="pill-sparkle">🌹</span>
+          </div>
+        </div>
+
+        <!-- Dramatic Typewriter Animation Box -->
+        <div class="typewriter-container glass-card" id="typewriterBox">
+          <span class="quote-mark">“</span>
+          <p class="typewriter-text" id="typewriterText"></p>
+          <span class="typing-cursor" id="typewriterCursor">|</span>
+        </div>
+
+        <div class="hero-author animate-fade-in">
+          <span class="cursive-tag">With all my love,</span>
+          <h2 class="author-name">From Rajkumar Parihar <span class="heart-mini">❤️</span></h2>
+        </div>
+
+        <div class="hero-cta-wrap">
+          <a href="#story" class="btn-primary-luxury" id="startStoryBtn">
+            <span>Start Our Story</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <p class="scroll-hint">Scroll down to relive our journey</p>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator" aria-hidden="true">
+        <span class="mouse-wheel"></span>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 2: OUR LOVE STORY (TIMELINE)
+         ========================================== -->
+    <section class="story-section section-padding" id="story">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Chapter I • The Beginning</span>
+          <h2 class="section-heading">Har Kahaani Ki Ek Shuruaat Hoti Hai...</h2>
+          <div class="heading-divider">
+            <span class="line"></span>
+            <span class="divider-heart">🌹</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-description">
+            Woh lamhe jinhone meri poori zindagi hamesha ke liye badal di.
+          </p>
+        </div>
+
+        <!-- Nostalgic Childhood Prelude: Two Souls Destined To Meet -->
+        <div class="childhood-destiny-box">
+          <div class="destiny-tag text-center">
+            <span class="sparkle-gold">✨</span> Kismat Ka Connection <span class="sparkle-gold">✨</span>
+            <h3 class="destiny-title">Do Masoom Bachpan... Ek Mukammal Mohabbat ❤️</h3>
+            <p class="destiny-desc">Pehle se tay tha ki yeh do muskurahatein ek din ek doosre ki duniya banengi.</p>
+          </div>
+
+          <div class="childhood-pair-wrap">
+            <!-- Baby Rajkumar -->
+            <div class="childhood-card float-slow-left" data-tilt>
+              <div class="pin-ornament">📌</div>
+              <div class="img-zoom-frame">
+                <img src="images/baby-rajkumar.jpg" alt="Little Rajkumar" class="childhood-img" loading="lazy">
+              </div>
+              <div class="childhood-caption">
+                <span class="child-name">Chhota Sa Rajkumar 🧢</span>
+                <p class="child-quote">“Bina jaane hi apni Jaya ka intezaar kar raha tha...”</p>
+              </div>
+            </div>
+
+            <!-- Beating Heart Destiny Bridge -->
+            <div class="destiny-heart-bridge">
+              <div class="pulsing-heart-icon">❤️</div>
+              <span class="destiny-ribbon-text">Written In The Stars</span>
+            </div>
+
+            <!-- Baby Jaya -->
+            <div class="childhood-card float-slow-right" data-tilt>
+              <div class="pin-ornament">📌</div>
+              <div class="img-zoom-frame">
+                <img src="images/baby-jaya.jpg" alt="Little Jaya" class="childhood-img" loading="lazy">
+              </div>
+              <div class="childhood-caption">
+                <span class="child-name">Pyari Si Jaya 🎀</span>
+                <p class="child-quote">“Jiski muskaan aage jaakar meri poori zindagi banne wali thi...”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-spine">
+            <div class="timeline-progress-bar" id="timelineProgressBar"></div>
+          </div>
+
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item" data-step="1">
+            <div class="timeline-dot"><span class="inner-dot"></span></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-tag">Pehli Nazar</span>
+              <h3 class="timeline-title">Jab tu pehli baar meri life mein aayi...</h3>
+              <p class="timeline-text">
+                Mujhe nahi pata tha ki ek simple si mulakat meri zindagi ka sabse khoobsurat mod ban jayegi. Teri ek smile ne mere dil mein ek alag sa sukoon bhar diya.
+              </p>
+              <!-- Photo Frame: Jaya in Saree -->
+              <div class="timeline-photo-container float-gentle" data-tilt>
+                <div class="photo-card-wrap">
+                  <img src="images/jaya-saree.jpg" alt="Jaya Verma smiling" class="timeline-photo-img" loading="lazy">
+                  <div class="photo-overlay-glow"></div>
+                  <div class="photo-badge">Teri Woh Khoobsurat Smile ✨</div>
+                </div>
+              </div>
+              <div class="card-footer-romantic">
+                <span class="card-sparkle">✨ Where it all began</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item" data-step="2">
+            <div class="timeline-dot"><span class="inner-dot"></span></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-tag">Sweet Connections</span>
+              <h3 class="timeline-title">Phir dheere-dheere tu meri aadat ban gayi...</h3>
+              <p class="timeline-text">
+                Subah ka pehla thought aur raat ka aakhri message. Teri baatein sunna meri daily routine ka sabse pyara hissa ban gaya.
+              </p>
+              <div class="card-footer-romantic">
+                <span class="card-sparkle">💬 Continuous conversations & laughs</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item" data-step="3">
+            <div class="timeline-dot"><span class="inner-dot"></span></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-tag">Deeper Bond</span>
+              <h3 class="timeline-title">Phir aadat se zarurat...</h3>
+              <p class="timeline-text">
+                Din tabhi accha lagta jab tujhse baat ho. Tere bina har khushi thodi adhoori si lagne lagi, aur har mushkil tere saath aasan.
+              </p>
+              <!-- Photo Frame: Cuddle Selfie -->
+              <div class="timeline-photo-container float-sway" data-tilt>
+                <div class="photo-card-wrap">
+                  <img src="images/couple-cozy.jpg" alt="Rajkumar and Jaya together" class="timeline-photo-img" loading="lazy">
+                  <div class="photo-overlay-glow"></div>
+                  <div class="photo-badge">Humari Pagalpan Wali Khushi ❤️</div>
+                </div>
+              </div>
+              <div class="card-footer-romantic">
+                <span class="card-sparkle">🌸 Can't spend a day without you</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4 -->
+          <div class="timeline-item" data-step="4">
+            <div class="timeline-dot"><span class="inner-dot"></span></div>
+            <div class="timeline-card glass-card">
+              <span class="timeline-tag">Pure Love</span>
+              <h3 class="timeline-title">Zarurat se mohabbat...</h3>
+              <p class="timeline-text">
+                Yeh woh feeling hai jo lafzon mein bayaan nahi ho sakti. Jahan mera dil sirf tere liye dhadakta hai aur meri aankhon mein sirf tera chehra hota hai.
+              </p>
+              <div class="card-footer-romantic">
+                <span class="card-sparkle">❤️ Unconditional & endlessly deep</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 5 (Grand Climax) -->
+          <div class="timeline-item timeline-highlight" data-step="5">
+            <div class="timeline-dot dot-glow"><span class="inner-dot"></span></div>
+            <div class="timeline-card glass-card card-luxury-glow">
+              <span class="timeline-tag tag-golden">The Ultimate Truth</span>
+              <h3 class="timeline-title title-grand">aur mohabbat se... MERI ZINDAGI ❤️</h3>
+              <p class="timeline-text">
+                Ab tu meri life ka ek hissa nahi hai beta, tu meri poori zindagi ban chuki hai. Jiske bina mera koi wajood nahi.
+              </p>
+              <!-- Photo Frame: Palace Couple Portrait -->
+              <div class="timeline-photo-container photo-grand float-heartbeat" data-tilt>
+                <div class="photo-card-wrap photo-grand-wrap">
+                  <img src="images/couple-palace.jpg" alt="Rajkumar and Jaya Palace" class="timeline-photo-img" loading="lazy">
+                  <div class="photo-overlay-glow"></div>
+                  <div class="photo-badge badge-grand">Rajkumar & Jaya • Humari Shaan 👑</div>
+                </div>
+              </div>
+              <div class="card-footer-romantic">
+                <span class="card-sparkle sparkle-gold">✨ Forever and always with you</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 3: WHAT JAYA MEANS TO ME
+         ========================================== -->
+    <section class="meaning-section section-padding" id="meaning">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Chapter II • True Feelings</span>
+          <h2 class="section-heading">Jaya, Tu Mere Liye Kya Hai?</h2>
+          <div class="heading-divider">
+            <span class="line"></span>
+            <span class="divider-heart">💌</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-description">
+            Words are never enough, but my heart wants to tell you every single day...
+          </p>
+        </div>
+
+        <div class="meaning-grid">
+          <!-- Card 1 -->
+          <div class="meaning-card glass-card">
+            <div class="meaning-icon">🕊️</div>
+            <h3 class="meaning-text">“Sirf meri girlfriend nahi...”</h3>
+            <span class="meaning-sub">You are so much more than a title</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="meaning-card glass-card">
+            <div class="meaning-icon">🤝</div>
+            <h3 class="meaning-text">“meri best friend hai.”</h3>
+            <span class="meaning-sub">With whom I share my deepest secrets & silly jokes</span>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="meaning-card glass-card">
+            <div class="meaning-icon">🔔</div>
+            <h3 class="meaning-text">“meri favourite notification hai.”</h3>
+            <span class="meaning-sub">The only name that instantly makes my heart skip a beat</span>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="meaning-card glass-card">
+            <div class="meaning-icon">✨</div>
+            <h3 class="meaning-text">“meri smile ka reason hai.”</h3>
+            <span class="meaning-sub">Even on the toughest days, just your thought brings light</span>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="meaning-card glass-card">
+            <div class="meaning-icon">🌿</div>
+            <h3 class="meaning-text">“meri peace hai.”</h3>
+            <span class="meaning-sub">The peaceful sanctuary where my chaotic world slows down</span>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="meaning-card glass-card">
+            <div class="meaning-icon">💫</div>
+            <h3 class="meaning-text">“meri favourite person hai.”</h3>
+            <span class="meaning-sub">Out of 8 billion people, my heart chose you</span>
+          </div>
+        </div>
+
+        <!-- Climax Card -->
+        <div class="meaning-climax glass-card card-luxury-glow">
+          <p class="climax-pretext">aur sabse important...</p>
+          <h3 class="climax-headline">MERI FUTURE WIFE HAI. ❤️</h3>
+          <p class="climax-subtext">The one I want to wake up next to for the rest of my days.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 4: DRAMATIC LOVE QUOTES
+         ========================================== -->
+    <section class="quotes-section section-padding" id="quotes">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Chapter III • From My Soul</span>
+          <h2 class="section-heading">Lafz Jo Dil Se Nikle Hain...</h2>
+          <div class="heading-divider">
+            <span class="line"></span>
+            <span class="divider-heart">🌙</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-description">
+            Cinematic lines whispered from Rajkumar’s heart to Jaya.
+          </p>
+        </div>
+
+        <div class="quotes-carousel-wrap">
+          <div class="quote-nav-controls">
+            <button class="quote-nav-btn prev" id="quotePrevBtn" aria-label="Previous quote">‹</button>
+            <div class="quote-dots" id="quoteDots"></div>
+            <button class="quote-nav-btn next" id="quoteNextBtn" aria-label="Next quote">›</button>
+          </div>
+
+          <div class="quote-cards-deck" id="quoteCardsDeck">
+            <!-- Quote 1: Radha & Mahabharat Poem -->
+            <article class="quote-card glass-card active" data-index="0">
+              <span class="quote-ornament">❝</span>
+              <p class="quote-content">
+                “Tu hi meri Radha, tu hi meri jaan hai,<br>
+                Tu hi mere dil ka sabse haseen armaan hai.<br>
+                Tere liye toh main poori Mahabharat rach doon,<br>
+                Tere pyaar mein apni jaan kurbaan kar doon.<br>
+                Tu saath rahe toh har pal khaas hai,<br>
+                <strong>Tu hi meri mohabbat, tu hi meri jaan hai. ❤️</strong>”
+              </p>
+              <div class="quote-author-signature">
+                <span class="sig-name">— Rajkumar Parihar</span>
+                <span class="sig-heart">❤️</span>
+              </div>
+            </article>
+
+            <!-- Quote 2: Tere Bina Dil Nahi Lagta Poem -->
+            <article class="quote-card glass-card" data-index="1">
+              <span class="quote-ornament">❝</span>
+              <p class="quote-content">
+                “Tere bina na dil lagta hai, na waqt guzarta hai,<br>
+                pata nahi kaisi mohabbat hai tujhse meri jaan,<br>
+                <strong>ki har pal bas tera hi khayal mere dil mein rehta hai. ❤️</strong>”
+              </p>
+              <div class="quote-author-signature">
+                <span class="sig-name">— Rajkumar Parihar</span>
+                <span class="sig-heart">❤️</span>
+              </div>
+            </article>
+
+            <!-- Quote 3: Teri Muskurahat Poem -->
+            <article class="quote-card glass-card" data-index="2">
+              <span class="quote-ornament">❝</span>
+              <p class="quote-content">
+                “Teri muskurahat mein kuch toh baat hai,<br>
+                jo mere dil ko har baar sukoon de jaati hai…<br>
+                Tu bas yunhi muskurati raha kar,<br>
+                <strong>teri muskurahat meri jeene ki wajah ban jaati hai. ❤️</strong>”
+              </p>
+              <div class="quote-author-signature">
+                <span class="sig-name">— Rajkumar Parihar</span>
+                <span class="sig-heart">❤️</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 5: WHY YOU, JAYA?
+         ========================================== -->
+    <section class="why-section section-padding" id="why">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">Chapter IV • The Pure Reason</span>
+          <h2 class="section-heading">Why You, Jaya?</h2>
+          <div class="heading-divider">
+            <span class="line"></span>
+            <span class="divider-heart">🌹</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-description">
+            Hundreds of reasons, thousands of feelings, one truth.
+          </p>
+        </div>
+
+        <div class="reasons-grid">
+          <div class="reason-card glass-card">
+            <div class="reason-badge">01</div>
+            <h3 class="reason-title">“Because tu meri smile samajhti hai.”</h3>
+            <p class="reason-body">You know exactly what makes me genuinely happy without even asking.</p>
+          </div>
+
+          <div class="reason-card glass-card">
+            <div class="reason-badge">02</div>
+            <h3 class="reason-title">“Because tu meri silence bhi samajhti hai.”</h3>
+            <p class="reason-body">Jab main chup rehta hoon, tab bhi mere bina bole meri baat samajh leti hai.</p>
+          </div>
+
+          <div class="reason-card glass-card">
+            <div class="reason-badge">03</div>
+            <h3 class="reason-title">“Because tere saath main khud ko khud jaisa feel karta hoon.”</h3>
+            <p class="reason-body">No filters, no fake smiles. Just the most raw, honest version of me.</p>
+          </div>
+
+          <div class="reason-card glass-card">
+            <div class="reason-badge">04</div>
+            <h3 class="reason-title">“Because tere saath ordinary moments bhi special lagte hain.”</h3>
+            <p class="reason-body">Simple tea dates, late night chats, long silences — everything feels magical with you.</p>
+          </div>
+
+          <div class="reason-card glass-card">
+            <div class="reason-badge">05</div>
+            <h3 class="reason-title">“Because tere bina kuch missing sa lagta hai.”</h3>
+            <p class="reason-body">Like a missing heartbeat, an incomplete sentence, an unfinished song.</p>
+          </div>
+
+          <!-- Highlight Reason -->
+          <div class="reason-card glass-card reason-chosen">
+            <div class="reason-badge">❤️</div>
+            <h3 class="reason-title highlight-text">“Because... Dil ne tujhe choose kiya hai. ❤️”</h3>
+            <p class="reason-body">And my heart has never been more sure of anything in this entire universe.</p>
+          </div>
+        </div>
+
+        <!-- Playful interactive buttons before the big question -->
+        <div class="playful-interactions-wrap text-center">
+          <div class="playful-buttons-container">
+            <button class="btn-playful-luxury" id="secretMessageBtn">
+              <span>Ek Secret Baat Hai... 🤫</span>
+            </button>
+            <button class="btn-playful-subtle" id="thinkAgainBtn">
+              <span>Ek Baar Aur Socho 😏</span>
+            </button>
+          </div>
+          <p class="playful-hint">Click them for a little smile before we take the biggest step!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 6: THE BIG QUESTION (MARRIAGE PROPOSAL)
+         ========================================== -->
+    <section class="proposal-section section-padding" id="proposal">
+      <div class="proposal-spotlight-layer" aria-hidden="true"></div>
+      
+      <div class="container proposal-container text-center">
+        <!-- Glowing Engagement Ring Animation -->
+        <div class="ring-container" id="ringBox">
+          <div class="ring-glow-halo"></div>
+          <div class="ring-sparkles-burst">
+            <span class="ring-sparkle sp-1">✨</span>
+            <span class="ring-sparkle sp-2">✨</span>
+            <span class="ring-sparkle sp-3">✨</span>
+            <span class="ring-sparkle sp-4">✨</span>
+          </div>
+          <!-- Luxury SVG Ring with sparkling diamond facets -->
+          <svg class="proposal-ring-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="goldBand" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff2db"/>
+                <stop offset="35%" stop-color="#e2ab75"/>
+                <stop offset="70%" stop-color="#b87f48"/>
+                <stop offset="100%" stop-color="#fdf4e4"/>
+              </linearGradient>
+              <linearGradient id="diamondGleam" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#d4f1f9"/>
+                <stop offset="100%" stop-color="#93c5fd"/>
+              </linearGradient>
+              <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+              </filter>
+            </defs>
+            <!-- Golden Ring Band -->
+            <circle cx="100" cy="118" r="54" stroke="url(#goldBand)" stroke-width="12" filter="url(#glowFilter)"/>
+            <circle cx="100" cy="118" r="54" stroke="url(#goldBand)" stroke-width="10"/>
+            <circle cx="100" cy="118" r="52" stroke="#fff" stroke-width="1.5" opacity="0.6"/>
+            <!-- Ring Crown Base -->
+            <path d="M88 68 L100 78 L112 68 L108 58 L92 58 Z" fill="url(#goldBand)"/>
+            <!-- Brilliant Cut Diamond -->
+            <polygon points="100,32 118,52 82,52" fill="url(#diamondGleam)" filter="url(#glowFilter)"/>
+            <polygon points="100,32 118,52 100,52" fill="#ffffff" opacity="0.9"/>
+            <polygon points="100,32 82,52 100,52" fill="#ccebfb" opacity="0.8"/>
+            <polygon points="82,52 92,68 100,52" fill="#e0f2fe" opacity="0.95"/>
+            <polygon points="118,52 108,68 100,52" fill="#bae6fd" opacity="0.95"/>
+            <polygon points="92,68 108,68 100,52" fill="#ffffff"/>
+          </svg>
+        </div>
+
+        <!-- Dramatic Staged Sequence Lines -->
+        <div class="proposal-lines-box">
+          <p class="prop-line prop-line-1" id="pLine1">Jaya...</p>
+          <p class="prop-line prop-line-2" id="pLine2">Bahut saari cheezein maine life mein plan ki hain...</p>
+          <div class="prop-keywords-wrap" id="pKeywords">
+            <span class="kw-tag">Career...</span>
+            <span class="kw-tag">Future...</span>
+            <span class="kw-tag">Dreams...</span>
+            <span class="kw-tag">Goals...</span>
+          </div>
+          <p class="prop-line prop-line-3" id="pLine3">But there's one thing...</p>
+          <p class="prop-line prop-line-4" id="pLine4">Jo main tere bina imagine nahi kar sakta.</p>
+          
+          <div class="prop-pause-block">
+            <h3 class="prop-line-standout" id="pLineStandout">MY LIFE.</h3>
+          </div>
+
+          <p class="prop-line prop-line-name" id="pLineName">Jaya Verma...</p>
+          
+          <div class="the-question-container">
+            <p class="the-question-pre">Kya tu meri girlfriend se...</p>
+            <h2 class="the-grand-question" id="grandQuestion">
+              MERI WIFE BANEGI? <span class="ring-symbol">💍</span> <span class="heart-symbol">❤️</span>
+            </h2>
+            <p class="the-question-english">Will you marry me?</p>
+          </div>
+        </div>
+
+        <!-- YES BUTTON AREA (ONLY ONE POSITIVE ACTION) -->
+        <div class="proposal-decision-wrap" id="decisionArea">
+          <div class="yes-halo-pulse"></div>
+          <button class="btn-yes-proposal" id="yesBtn">
+            <span class="btn-sparkle-left">✨</span>
+            <span class="btn-text">YES ❤️</span>
+            <span class="btn-sparkle-right">✨</span>
+          </button>
+          
+          <div class="yes-sub-note">
+            <span>The easiest & best decision of our lives</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECTION 7: FINAL LOVE MESSAGE & PROMISES
+         (Visible after celebration or smooth reveal)
+         ========================================== -->
+    <section class="love-letter-section section-padding" id="loveLetterSection">
+      <div class="container">
+        <div class="letter-card glass-card">
+          <div class="letter-stamp">
+            <span>❤️ FOREVER</span>
+          </div>
+          
+          <div class="letter-header">
+            <span class="letter-salutation">My Dearest Jaya,</span>
+            <div class="letter-divider"></div>
+          </div>
+
+          <div class="letter-body">
+            <p>
+              Aaj se nahi, balki jis din tu meri life mein aayi thi, usi din se maine apne future mein tujhe imagine karna shuru kar diya tha.
+            </p>
+            <p class="promise-intro">Main promise karta hoon...</p>
+            
+            <div class="promises-list">
+              <div class="promise-item">
+                <span class="promise-bullet">🌹</span>
+                <p>Har khushi mein tere saath rahunga.</p>
+              </div>
+              <div class="promise-item">
+                <span class="promise-bullet">🤝</span>
+                <p>Har mushkil mein tera haath pakadunga.</p>
+              </div>
+              <div class="promise-item">
+                <span class="promise-bullet">😄</span>
+                <p>Har silly moment mein tere saath hasunga.</p>
+              </div>
+              <div class="promise-item">
+                <span class="promise-bullet">💫</span>
+                <p>Har dream mein tera naam hoga.</p>
+              </div>
+            </div>
+
+            <div class="letter-climax">
+              <p class="climax-en-1">“And every version of my future...”</p>
+              <p class="climax-en-2">“...will have you in it.”</p>
+            </div>
+
+            <!-- Love Story Snapshot Strip -->
+            <div class="letter-snapshots-row">
+              <div class="snapshot-thumb float-slow-left" data-tilt>
+                <img src="images/jaya-saree.jpg" alt="Jaya in Saree">
+                <span class="snapshot-tag">Teri Smile ✨</span>
+              </div>
+              <div class="snapshot-thumb float-gentle" data-tilt>
+                <img src="images/couple-palace.jpg" alt="Rajkumar and Jaya">
+                <span class="snapshot-tag">Humari Jodi 👑</span>
+              </div>
+              <div class="snapshot-thumb float-slow-right" data-tilt>
+                <img src="images/couple-cozy.jpg" alt="Rajkumar and Jaya Cozy">
+                <span class="snapshot-tag">Humara Sukoon ❤️</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="letter-signature">
+            <span class="sig-note">Forever yours,</span>
+            <h3 class="sig-author">Rajkumar Parihar <span class="sig-heart">❤️</span></h3>
+          </div>
+
+          <!-- Souvenir Keepsake Action -->
+          <div class="letter-actions text-center">
+            <button class="btn-keepsake-luxury" id="downloadKeepsakeBtn">
+              <span>💌 Save Our Love Keepsake</span>
+            </button>
+            <button class="btn-celebrate-again" id="replayCelebrationBtn">
+              <span>🎆 Celebrate Again!</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================
+       CELEBRATION FULLSCREEN MODAL OVERLAY
+       ========================================== -->
+  <div class="celebration-overlay" id="celebrationOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="celebration-backdrop"></div>
+    <div class="celebration-content glass-card">
+      
+      <!-- Grand Couple Photo on Celebration -->
+      <div class="celebration-photo-frame float-heartbeat" data-tilt>
+        <img src="images/couple-palace.jpg" alt="Jaya & Rajkumar Forever" class="celebration-img">
+        <div class="celebration-photo-glow"></div>
+      </div>
+
+      <div class="celebration-badge">SHE SAID YES! ❤️</div>
+      
+      <h2 class="celebration-couple">
+        Jaya <span class="couple-amp">&</span> Rajkumar
+      </h2>
+      
+      <p class="celebration-tagline">Forever Starts Here...</p>
+      
+      <div class="celebration-divider">
+        <span></span>
+        <span class="sparkle-gold">✨</span>
+        <span></span>
+      </div>
+
+      <h3 class="celebration-title-final">
+        Officially Future Husband &amp; Wife ❤️
+      </h3>
+      
+      <p class="celebration-note">
+        Yeh sirf ek website nahi hai... yeh humari nayi zindagi ka sabse khoobsurat aagaaz hai.
+      </p>
+
+      <button class="btn-continue-letter" id="continueToLetterBtn">
+        <span>Read My Forever Letter to You 💌</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PLAYFUL MODALS
+       ========================================== -->
+  <!-- Secret Message Modal -->
+  <dialog class="custom-modal glass-card" id="secretModal">
+    <div class="modal-body text-center">
+      <div class="modal-icon">🤫✨</div>
+      <h3 class="modal-title">Ek Secret Baat Hai...</h3>
+      <p class="modal-text">
+        “Jaya, sach kahun... tere saath future imagine karna mujhe kisi bhi dream se zyada beautiful lagta hai. ❤️”
+      </p>
+      <button class="btn-primary-luxury modal-close-btn" id="closeSecretModalBtn">
+        <span>Haye, So Sweet! ❤️</span>
+      </button>
+    </div>
+  </dialog>
+
+  <!-- Playful Witty Toast -->
+  <div class="romantic-toast" id="romanticToast" role="status" aria-live="polite">
+    <div class="toast-icon">😏❤️</div>
+    <div class="toast-content">
+      <h4 class="toast-title">Ek Baar Aur Socha?</h4>
+      <p class="toast-body">Answer toh mujhe pata hi hai... bas tere YES ka wait hai. ❤️</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="romantic-footer text-center">
+    <div class="container">
+      <p class="footer-quote">“Tu hi meri manzil, tu hi mera raasta.”</p>
+      <p class="footer-credit">
+        Crafted with infinite love by <strong>Rajkumar Parihar</strong> for <strong>Jaya Verma</strong> ❤️
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

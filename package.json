@@ -1,0 +1,9 @@
+{
+  "name": "jaya-rajkumar-forever",
+  "version": "1.0.0",
+  "description": "Marriage Proposal Website for Jaya Verma ❤️ Rajkumar Parihar",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
