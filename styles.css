@@ -2633,4 +2633,161 @@ dialog {
   font-style: italic;
 }
 
+/* ==========================================================================
+   HUG & LONG KISS ROMANTIC ELEMENTS (LETTER END, MODAL, FOOTER)
+   ========================================================================== */
+
+.letter-demand-banner {
+  margin: 2.5rem auto 1.5rem;
+  padding: 1.6rem 1.8rem;
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.18) 0%, rgba(212, 175, 55, 0.12) 100%);
+  border: 1px solid rgba(225, 29, 72, 0.4);
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(225, 29, 72, 0.25);
+  backdrop-filter: blur(10px);
+}
+
+.demand-heart-pulse {
+  font-size: 2.4rem;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.demand-tag {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-champagne);
+  margin-bottom: 0.5rem;
+}
+
+.demand-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3.5vw, 1.55rem);
+  color: #ffffff;
+  line-height: 1.5;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.btn-hug-kiss-luxury {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #9f1239 100%);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 1rem 2.2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(225, 29, 72, 0.6), 0 0 25px rgba(255, 215, 0, 0.3);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-hug-kiss-luxury:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 45px rgba(225, 29, 72, 0.8), 0 0 35px rgba(255, 215, 0, 0.5);
+}
+
+/* Celebration Overlay Hug & Kiss Note */
+.celebration-hug-kiss-note {
+  margin: 1.4rem auto;
+  padding: 1rem 1.6rem;
+  background: rgba(225, 29, 72, 0.15);
+  border: 1px solid rgba(225, 29, 72, 0.4);
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.chk-emoji {
+  font-size: 1.8rem;
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.chk-text {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--cream-soft);
+  margin: 0;
+}
+
+.chk-text strong {
+  color: var(--gold-champagne);
+}
+
+/* Dedicated Hug & Kiss Modal */
+.hug-kiss-modal {
+  border: 2px solid var(--rose-gold) !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(225, 29, 72, 0.6) !important;
+}
+
+.hug-kiss-modal-quote {
+  font-size: 1.55rem !important;
+  color: #ffffff !important;
+}
+
+.hug-kiss-modal-quote strong {
+  color: var(--gold-champagne);
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 1.7rem;
+  text-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
+}
+
+.modal-kiss-emojis {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+  margin-bottom: 1.8rem;
+  animation: gentleBob 2s ease-in-out infinite;
+}
+
+/* Footer Final Call */
+.footer-final-call {
+  margin-bottom: 2rem;
+  padding: 1.4rem 2rem;
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.15) 0%, rgba(212, 175, 55, 0.1) 100%);
+  border: 1px solid rgba(225, 29, 72, 0.35);
+  border-radius: 20px;
+  display: inline-block;
+  max-width: 650px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(225, 29, 72, 0.2);
+}
+
+.footer-call-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+.footer-hug-kiss-text {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--cream-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.footer-hug-kiss-text strong {
+  color: var(--gold-champagne);
+  font-size: 1.45rem;
+}
+
+
 

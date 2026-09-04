@@ -721,7 +721,63 @@ document.addEventListener('DOMContentLoaded', () => {
   // Keepsake Certificate / Love Letter Print & Save
   downloadKeepsakeBtn?.addEventListener('click', () => {
     window.print();
+    setTimeout(() => {
+      triggerHugKissModal();
+    }, 1000);
   });
+
+  /* --------------------------------------------------------------------------
+     Dedicated Hug & Long Kiss Modal Interactivity
+     -------------------------------------------------------------------------- */
+  const hugKissModal = document.getElementById('hugKissModal');
+  const openHugKissBtn = document.getElementById('openHugKissBtn');
+  const closeHugKissModalBtn = document.getElementById('closeHugKissModalBtn');
+  let hasAutoShownHugKiss = false;
+
+  function triggerHugKissModal() {
+    if (hugKissModal && !hugKissModal.open) {
+      hugKissModal.showModal();
+      celebrationEngine.launch();
+      if (window.confetti) {
+        window.confetti({ particleCount: 60, spread: 80, origin: { y: 0.55 } });
+      }
+    }
+  }
+
+  openHugKissBtn?.addEventListener('click', () => {
+    triggerHugKissModal();
+  });
+
+  closeHugKissModalBtn?.addEventListener('click', () => {
+    hugKissModal?.close();
+  });
+
+  hugKissModal?.addEventListener('click', (e) => {
+    const rect = hugKissModal.getBoundingClientRect();
+    const isInDialog = (
+      rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+      rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+    );
+    if (!isInDialog) {
+      hugKissModal.close();
+    }
+  });
+
+  // Automatically trigger the "Hug & Long Kiss" popup after reading the letter
+  const letterSig = document.querySelector('.letter-signature');
+  if (letterSig && 'IntersectionObserver' in window) {
+    const sigObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAutoShownHugKiss) {
+          hasAutoShownHugKiss = true;
+          setTimeout(() => {
+            triggerHugKissModal();
+          }, 1800);
+        }
+      });
+    }, { threshold: 0.6 });
+    sigObserver.observe(letterSig);
+  }
 
   /* --------------------------------------------------------------------------
      GSAP ScrollTrigger Reveals (with pure JS fallback)
